@@ -1,0 +1,24 @@
+<nz-layout>
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item nzSelected>
+        <a routerLink="login" routerLinkActive="active">Cliente</a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="admin/usuario" routerLinkActive="active">Admin</a>
+      </li>
+    </ul>
+  </nz-header>
+
+  <nz-layout>
+    <div [@routeAnimation]="getAnimationData(routerOutlet)">
+      <div>
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+      </div>
+    </div>
+    <div>
+      <router-outlet name="popup"></router-outlet>
+    </div>
+  </nz-layout>
+</nz-layout>

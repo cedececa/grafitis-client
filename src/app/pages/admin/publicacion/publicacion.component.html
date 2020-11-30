@@ -1,0 +1,100 @@
+<app-page-container pageWidth="80%">
+  <h1 class="global-text-center global-padding-16">Publicación</h1>
+  <nz-badge>
+    <button nz-button nzType="primary" (click)="table.refresh()">
+      Refresh
+    </button>
+  </nz-badge>
+  <button nz-button nzType="primary" (click)="table.updateFilter('', null)">
+    Reset Filters
+  </button>
+  <button nz-button (click)="showSimpleCreateModal()" class="green-button">
+    Create New
+  </button>
+
+  <nz-table
+    nzBordered
+    nzSize="small"
+    [nzFrontPagination]="false"
+    [nzData]="table.listOfData | async"
+    [nzLoading]="table.loading | async"
+    [nzTotal]="table.total | async"
+    [(nzPageIndex)]="table.pageIndex"
+    [(nzPageSize)]="table.pageSize"
+    (nzPageIndexChange)="table.searchData()"
+    (nzPageSizeChange)="table.searchData(true)"
+    nzPaginationPosition="top"
+    #ajaxTable
+  >
+    <thead (nzSortChange)="table.sort($event)" nzSingleSort>
+      <tr>
+        <th nzShowSort nzSortKey="createdAt">
+          <span>Created At</span>
+        </th>
+        <th nzShowSort nzSortKey="updatedAt">
+          <span>Modified At</span>
+        </th>
+        <th nzShowSort>
+          <span>Id</span>
+        </th>
+        <th>
+          <span>Fecha</span>
+        </th>
+        <th>
+          <span>Tematica</span>
+        </th>
+        <th>
+          <span>Ubicacion</span>
+        </th>
+        <th>
+          <span>Estado</span>
+        </th>
+        <th>
+          <span>Autor</span>
+        </th>
+        <th>
+          <span>ValoracoinMedia</span>
+        </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody style="text-align: center">
+      <tr *ngFor="let publicacion of table.listOfData | async">
+        <td>
+          {{ publicacion.createdAt | ToDate }}
+          {{ publicacion.createdAt | ToTime }}
+        </td>
+        <td>
+          {{ publicacion.updatedAt | ToDate }}
+          {{ publicacion.updatedAt | ToTime }}
+        </td>
+        <td>
+          {{ publicacion.id }}
+        </td>
+        <td>
+          {{ publicacion.fecha | ToDate }}
+        </td>
+        <td>
+          {{ publicacion.tematica }}
+        </td>
+        <td>
+          {{ publicacion.ubicacion }}
+        </td>
+        <td>
+          {{ publicacion.estado }}
+        </td>
+        <td>
+          {{ publicacion.autor }}
+        </td>
+        <td>
+          {{ publicacion.valoracoinMedia }}
+        </td>
+        <td>
+          <a (click)="showSimpleModificationModal(publicacion)">Modify</a>
+          <br>
+          <a (click)="table.remove(publicacion)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</app-page-container>

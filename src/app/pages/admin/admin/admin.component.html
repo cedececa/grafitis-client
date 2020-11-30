@@ -1,0 +1,18 @@
+<nz-layout>
+  <nz-sider nzWidth="200px" nzTheme="light">
+    <div class="logo"></div>
+ 
+    <ul nz-menu nzMode="inline"  class="sider-menu">
+      <li nz-menu-item nzSelected>
+        <a routerLink="usuario" routerLinkActive="active">Usuario</a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="publicacion" routerLinkActive="active">Publicacion</a>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout >
+    <!-- The routed views render in the <router-outlet>-->
+    <router-outlet #routerOutlet="outlet"></router-outlet>
+  </nz-layout>
+</nz-layout>

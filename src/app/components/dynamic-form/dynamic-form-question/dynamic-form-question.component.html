@@ -1,0 +1,104 @@
+<nz-form-item [formGroup]="form">
+  <nz-form-label [nzSpan]="6" nzRequired [nzFor]="question.key">{{
+    question.label
+  }}</nz-form-label>
+
+  <div [ngSwitch]="question.controlType" style="width: 100%">
+    <div *ngSwitchCase="'array'" style="width: 100%">
+      <app-dynamic-form-question
+        *ngFor="let q of question.value"
+        [question]="q"
+        [form]="form.get(question.key)"
+      ></app-dynamic-form-question>
+    </div>
+
+    <nz-form-control [nzSpan]="12" nzErrorTip="{{ question.errorMessage }}">
+      <input
+        *ngSwitchCase="'textbox'"
+        style="width: 100%"
+        [id]="question.key"
+        [type]="question.controlType"
+        nz-input
+        [(ngModel)]="question.value"
+        [formControlName]="question.key"
+        [disabled]="question.disabled"
+        [readonly]="question.disabled"
+      />
+
+      <nz-select
+        *ngSwitchCase="'selection'"
+        [formControlName]="question.key"
+        [id]="question.key"
+        nzShowSearch
+        [compareWith]="compareFn"
+        nzPlaceHolder="Choose"
+      >
+        <nz-option
+          *ngFor="let opt of question.options"
+          [nzLabel]="opt.name"
+          [nzValue]="opt"
+        ></nz-option>
+      </nz-select>
+
+      <nz-switch
+        *ngSwitchCase="'switch'"
+        [id]="question.key"
+        [formControlName]="question.key"
+      ></nz-switch>
+
+      <nz-date-picker
+        *ngSwitchCase="'date-picker'"
+        [id]="question.key"
+        [formControlName]="question.key"
+      ></nz-date-picker>
+
+      <div *ngSwitchCase="'image-uploader'">
+        <div class="upload-btn-wrapper">
+          <button nz-button>
+            <span><i nz-icon nzType="upload"></i> Upload A Image</span>
+          </button>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="changeListener($event, question.key)"
+            id="file"
+            name="myfile"
+            class="input-file"
+            aria-label="File browser example"
+          />
+        </div>
+        <br />
+        <img [src]="image" *ngIf="image.length > 100" />
+      </div>
+
+      <!--       <input
+        *ngSwitchCase="'color-picker'"
+        [id]="question.key"
+        [formControlName]="question.key"
+        [value]="question.value"
+        [style.background]="question.value"
+        [cpAlphaChannel]="'always'"
+        [cpOutputFormat]="'rgba'"
+        [(colorPicker)]="question.value"
+        (colorPickerChange)="setColor($event)"
+      /> -->
+    </nz-form-control>
+
+    <!--     <quill-editor
+      *ngSwitchCase="'rich-content-editor'"
+      [styles]="{ minHeight: '200px' }"
+      [modules]="modulesForQuill"
+      [(ngModel)]="question.value"
+      [id]="question.key"
+      [formControlName]="question.key"
+    ></quill-editor>
+ -->
+    <!--     <angular-editor
+      *ngSwitchCase="'angular-rich-editor'"
+      [id]="question.key"
+      [formControlName]="question.key"
+      [(ngModel)]="question.value"
+      [config]="config"
+    ></angular-editor> -->
+  </div>
+</nz-form-item>

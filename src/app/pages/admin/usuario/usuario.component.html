@@ -1,0 +1,69 @@
+<app-page-container>
+  <h1 class="global-text-center global-padding-16">Usuario</h1>
+  <nz-badge>
+    <button nz-button nzType="primary" (click)="table.refresh()">
+      Refresh
+    </button>
+  </nz-badge>
+  <button nz-button nzType="primary" (click)="table.updateFilter('', null)">
+    Reset Filters
+  </button>
+  <button nz-button (click)="showSimpleCreateModal()" class="green-button">
+    Create New
+  </button>
+
+  <nz-table
+    nzBordered
+    nzSize="small"
+    [nzFrontPagination]="false"
+    [nzData]="table.listOfData | async"
+    [nzLoading]="table.loading | async"
+    [nzTotal]="table.total | async"
+    [(nzPageIndex)]="table.pageIndex"
+    [(nzPageSize)]="table.pageSize"
+    (nzPageIndexChange)="table.searchData()"
+    (nzPageSizeChange)="table.searchData(true)"
+    nzPaginationPosition="top"
+    #ajaxTable
+  >
+    <thead (nzSortChange)="table.sort($event)" nzSingleSort>
+      <tr>
+        <th nzShowSort nzSortKey="createdAt">
+          <span>Created At</span>
+        </th>
+        <th nzShowSort nzSortKey="updatedAt">
+          <span>Modified At</span>
+        </th>
+
+        <th nzShowSort>
+          <span>Id</span>
+        </th>
+        <th>
+          <span>Nombre</span>
+        </th>
+        <th >Action</th>
+      </tr>
+    </thead>
+    <tbody style="text-align: center">
+      <tr *ngFor="let usuario of table.listOfData | async">
+        <td>
+          {{ usuario.createdAt | ToDate }} {{ usuario.createdAt | ToTime }}
+        </td>
+        <td>
+          {{ usuario.updatedAt | ToDate }} {{ usuario.updatedAt | ToTime }}
+        </td>
+        <td>
+          {{ usuario.id }}
+        </td>
+        <td>
+          {{ usuario.perfil ? usuario.perfil.nombre : "" }}
+        </td>
+        <td>
+          <a (click)="showSimpleModificationModal(usuario)">Modify</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="table.remove(usuario)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</app-page-container>
