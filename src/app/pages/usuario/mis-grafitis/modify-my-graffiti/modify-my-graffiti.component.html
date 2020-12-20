@@ -1,0 +1,62 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzSpan="6" nzRequired>Autor</nz-form-label>
+    <nz-form-control nzErrorTip="Por favor, introduzca el autor!">
+      <input type="text" nz-input formControlName="autor" placeholder="Autor" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="6" nzRequired>latitud</nz-form-label>
+    <nz-form-control
+      nzErrorTip="Por favor, introduzca la latitud de la ubicacion"
+    >
+      <input
+        type="number"
+        nz-input
+        formControlName="latitud"
+        placeholder="Latitud"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="6" nzRequired>Longitud</nz-form-label>
+    <nz-form-control
+      nzErrorTip="Por favor, introduzca la longitud de la ubicacion"
+    >
+      <input
+        type="number"
+        nz-input
+        formControlName="longitud"
+        placeholder="Longitud"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzSpan="6" nzRequired>Grafitis</nz-form-label>
+    <nz-form-control nzErrorTip="Grafitis">
+      <app-upload-image-single
+        formControlName="foto"
+        uploadUrl="foto"
+        binaryName="image"
+        preURLForLoad="http://localhost:3000"
+        imageURLToLoad=""
+      >
+      </app-upload-image-single>
+    </nz-form-control>
+  </nz-form-item>
+  <div class="global-flex-end">
+    <button nz-button nzType="info" type="button" (click)="g()">
+      Generar una ubicacion
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      type="submit"
+      class="global-margin-left-8"
+      [disabled]="!validateForm.valid"
+    >
+      Confirmar
+    </button>
+  </div>
+</form>

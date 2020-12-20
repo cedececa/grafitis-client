@@ -1,0 +1,50 @@
+<div id="table-map-container">
+  <nz-table
+    #rowSelectionTable
+    [nzData]="listOfData$  | async"
+    
+    [nzScroll]="{ y: '750px' }"
+  >
+    <thead>
+      <tr>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Autor</th>
+        <th>Foto</th>
+        <th>Acction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data">
+        <td>{{ data.latitud }}</td>
+        <td>{{ data.longitud }}</td>
+        <td>{{ data.autor }}</td>
+        <td>
+          <img
+            *ngIf="data.foto"
+            [src]="preImageUrlForLoad + '/' + data.foto"
+            style="width: 100px"
+            (click)="openPreviewModal(data.foto)"
+          />
+        </td>
+
+        <td>
+          <a (click)='openModifyGrafitisModal(data)'>Modificar</a>
+          <br />
+          <a (click)='remove(data)'>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+<nz-modal
+  [nzVisible]="previewVisible"
+  [nzContent]="modalContent"
+  [nzMask]="true"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false"
+>
+  <ng-template #modalContent>
+    <img [src]="imageFullUrl" [ngStyle]="{ width: '100%' }" />
+  </ng-template>
+</nz-modal>

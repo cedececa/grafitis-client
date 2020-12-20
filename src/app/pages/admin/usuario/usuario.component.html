@@ -35,13 +35,19 @@
           <span>Modified At</span>
         </th>
 
-        <th nzShowSort>
+        <th>
           <span>Id</span>
+        </th>
+        <th>
+          <span>Email</span>
+        </th>
+        <th>
+          <span>Password</span>
         </th>
         <th>
           <span>Nombre</span>
         </th>
-        <th >Action</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody style="text-align: center">
@@ -54,6 +60,12 @@
         </td>
         <td>
           {{ usuario.id }}
+        </td>
+        <td>
+          {{ usuario.email }}
+        </td>
+        <td>
+          {{ usuario.password }}
         </td>
         <td>
           {{ usuario.perfil ? usuario.perfil.nombre : "" }}

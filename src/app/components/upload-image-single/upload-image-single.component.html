@@ -1,0 +1,21 @@
+<nz-upload
+  class="image-uploader"
+  [nzAction]="uploadUrl"
+  [nzName]="binaryName"
+  nzListType="picture-card"
+  [nzBeforeUpload]="beforeUpload"
+  (nzChange)="handleChange($event)"
+  nzFileType="image/png,image/jpeg,image/gif"
+  [nzShowUploadList]="false"
+>
+  <ng-container *ngIf="!_imageURLToLoad">
+    <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+    <div class="ant-upload-text">Upload</div>
+  </ng-container>
+  <img
+    *ngIf="_imageURLToLoad"
+    [src]="preURLForLoad + '/' + imageURLToLoad"
+    style="width: 100%"
+  />
+</nz-upload>
+

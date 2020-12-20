@@ -1,5 +1,5 @@
 export class CommonEntity {
-  id: Number | String;
+  id: number;
   createdAt: Date | String;
   updatedAt: Date | String;
 }

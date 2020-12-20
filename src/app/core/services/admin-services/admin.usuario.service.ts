@@ -20,16 +20,6 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
     super(http, UsuarioEntity, uri);
   }
 
-  getAll(): Observable<UsuarioEntity[]> {
-    return this.http
-      .get<URLHttpMultipleDataResponse<UsuarioEntity>>(`${uri}/getAll`)
-      .pipe(
-        map((res: URLHttpMultipleDataResponse<UsuarioEntity>) => {
-          return res.data;
-        })
-      );
-  }
-
   getUsuarioById(
     id: string
   ): Observable<URLHttpSingleDataResponse<UsuarioEntity>> {
@@ -54,9 +44,16 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
         errorMessage: 'Fill the role.',
       }),
       new TextboxQuestion({
-        key: 'claveHash',
+        key: 'password',
         label: 'key',
-        value: usuario.claveHash || '',
+        value: usuario.password || '',
+        required: false,
+        errorMessage: 'Fill the key.',
+      }),
+      new TextboxQuestion({
+        key: 'email',
+        label: 'key',
+        value: usuario.email || '',
         required: false,
         errorMessage: 'Fill the key.',
       }),
@@ -96,7 +93,7 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
             label: 'Fecha de Nacimiento',
             value: usuario.perfil.fechaNacimiento,
             required: true,
-          })
+          }),
         ],
       }),
     ];

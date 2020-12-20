@@ -1,0 +1,22 @@
+<nz-layout>
+  <nz-sider nzWidth="200px" nzTheme="light">
+    <div class="logo"></div>
+
+    <ul nz-menu nzMode="inline" class="sider-menu">
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="mapa-grafitis" routerLinkActive="active"
+          >Mapa Grafitis</a
+        >
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="mis-grafitis" routerLinkActive="active"
+          >Mis Grafitis</a
+        >
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <!-- The routed views render in the <router-outlet>-->
+    <router-outlet #routerOutlet="outlet"></router-outlet>
+  </nz-layout>
+</nz-layout>

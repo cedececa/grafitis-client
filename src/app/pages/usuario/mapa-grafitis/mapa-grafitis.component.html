@@ -1,0 +1,58 @@
+<div id="map-container">
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+    <input
+      type="text"
+      nz-input
+      placeholder="buscar por nombre"
+      [(ngModel)]="autorToBeSearched"
+      (keyup.enter)="filterByAutor(autorToBeSearched)"
+    />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button
+      nz-button
+      nzType="info"
+      nzSize="large"
+      nzSearch
+      (click)="filterByAutor('')"
+    >
+      Reset
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      nzSearch
+      (click)="filterByAutor(autorToBeSearched)"
+    >
+      Search
+    </button>
+  </ng-template>
+  <google-map
+    height="100%"
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+  >
+    <map-marker
+      *ngFor="let marker of markers$ | async"
+      [position]="marker.position"
+      [label]="marker.label"
+      [title]="marker.title"
+      [options]="marker.options"
+      (mapClick)="openGrafitiDetailModal(marker)"
+    >
+    </map-marker>
+  </google-map>
+  <button
+    id="button-publicar"
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    nzShape="round"
+    (click)="openCreateGrafitisModal()"
+  >
+    Pulibcar nuevo grafitis
+  </button>
+</div>

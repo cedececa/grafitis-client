@@ -6,8 +6,8 @@ import { ValoracionEntity } from './valoracion.entity';
 
 export class UsuarioEntity extends CommonEntity {
   role: string;
-  claveHash: string;
-  correo: string;
+  password: string;
+  email: string;
   perfil: PerfilEntity;
   valoraciones: ValoracionEntity[];
   comentarios: ComentarioEntity[];

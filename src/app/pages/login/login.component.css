@@ -1,7 +1,6 @@
 
 .login-form {
   width: 100%;
-  margin-top:100px;
 }
 
 .login-form-margin {
@@ -14,4 +13,12 @@
 
 .login-form-button {
   width: 100%;
+}
+.logo-font {
+  margin-top:100px;
+  margin-bottom:60px;
+
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  font-size: 80px;
 }

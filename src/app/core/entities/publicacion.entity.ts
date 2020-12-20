@@ -14,5 +14,7 @@ export class PublicacionEntity extends CommonEntity {
   usuario: UsuarioEntity;
   valoraciones: ValoracionEntity[];
   comentarios: ComentarioEntity[];
-  fotos: FotoEntity[];
+  foto: string;
+  latitud: number;
+  longitud: number;
 }

@@ -20,15 +20,6 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
     super(http, PublicacionEntity, uri);
   }
 
-  getAll(): Observable<PublicacionEntity[]> {
-    return this.http
-      .get<URLHttpMultipleDataResponse<PublicacionEntity>>(`${uri}/getAll`)
-      .pipe(
-        map((res: URLHttpMultipleDataResponse<PublicacionEntity>) => {
-          return res.data;
-        })
-      );
-  }
 
   getUsuarioById(
     id: string

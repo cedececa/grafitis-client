@@ -1,0 +1,14 @@
+/* .rest-height {
+  height: calc(100% - 64px);
+  width: 100%;
+} */
+#map-container {
+  height: calc(100% - 104px);
+  width: calc(100% - 200px);
+  position: absolute;
+}
+#button-publicar {
+  position: absolute;
+  bottom: -16px;
+  right: 60px;
+}

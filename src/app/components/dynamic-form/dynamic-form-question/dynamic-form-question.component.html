@@ -1,10 +1,12 @@
-<nz-form-item [formGroup]="form">
-  <nz-form-label [nzSpan]="6" nzRequired [nzFor]="question.key">{{
-    question.label
-  }}</nz-form-label>
+<nz-form-item [formGroup]="form" nzLayout="vertical">
+  <div *ngIf="question.controlType.localeCompare('array') != 0">
+    <nz-form-label nzRequired [nzFor]="question.key">{{
+      question.label
+    }}</nz-form-label>
+  </div>
 
-  <div [ngSwitch]="question.controlType" style="width: 100%">
-    <div *ngSwitchCase="'array'" style="width: 100%">
+  <div [ngSwitch]="question.controlType">
+    <div *ngSwitchCase="'array'">
       <app-dynamic-form-question
         *ngFor="let q of question.value"
         [question]="q"
@@ -12,10 +14,9 @@
       ></app-dynamic-form-question>
     </div>
 
-    <nz-form-control [nzSpan]="12" nzErrorTip="{{ question.errorMessage }}">
+    <nz-form-control nzErrorTip="{{ question.errorMessage }}">
       <input
         *ngSwitchCase="'textbox'"
-        style="width: 100%"
         [id]="question.key"
         [type]="question.controlType"
         nz-input

@@ -20,6 +20,15 @@ import { AdminComponent } from './pages/admin/admin/admin.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './components/dynamic-form/dynamic-form-question/dynamic-form-question.component';
 import { TableBaseUpdateCreateComponent } from './components/table-base-update-create/table-base-update-create.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapaGrafitisComponent } from './pages/usuario/mapa-grafitis/mapa-grafitis.component';
+import { UsuarioLayoutComponent } from './pages/usuario/usuario-layout/usuario-layout.component';
+import { CreateGrafitisComponent } from './pages/usuario/mapa-grafitis/create-grafitis/create-grafitis.component';
+import { UploadImageSingleComponent } from './components/upload-image-single/upload-image-single.component';
+import { GrafitisDetailComponent } from './pages/usuario/mapa-grafitis/grafitis-detail/grafitis-detail.component';
+import { LoadingSpinModalComponent } from './components/loading-spin-modal/loading-spin-modal.component';
+import { MisGrafitisComponent } from './pages/usuario/mis-grafitis/mis-grafitis.component';
+import { ModifyMyGraffitiComponent } from './pages/usuario/mis-grafitis/modify-my-graffiti/modify-my-graffiti.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +41,14 @@ import { TableBaseUpdateCreateComponent } from './components/table-base-update-c
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     TableBaseUpdateCreateComponent,
+    UsuarioLayoutComponent,
+    MapaGrafitisComponent,
+    CreateGrafitisComponent,
+    UploadImageSingleComponent,
+    GrafitisDetailComponent,
+    LoadingSpinModalComponent,
+    MisGrafitisComponent,
+    ModifyMyGraffitiComponent
   ],
   imports: [
     HttpClientModule,
@@ -43,6 +60,7 @@ import { TableBaseUpdateCreateComponent } from './components/table-base-update-c
     AppRoutingModule,
     PipesModule,
     Ng2ImgMaxModule,
+    GoogleMapsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-.global-text-center{
-    text-align: center;
+.global-text-center {
+  text-align: center;
 }
-.global-padding-16{
-    padding: 16px;
+.global-padding-16 {
+  padding: 16px;
+}
+.global-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.global-margin-left-8 {
+  margin-left: 8px !important;
 }

@@ -1,5 +1,6 @@
 <app-page-container pageWidth="40%">
   
+  <h1 class="logo-font">Grafitis City</h1>
   <form
     nz-form
     [formGroup]="validateForm"
@@ -7,19 +8,19 @@
     (ngSubmit)="submitForm()"
   >
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
+      <nz-form-control nzErrorTip="su email!">
         <nz-input-group nzPrefixIcon="user">
           <input
             type="text"
             nz-input
-            formControlName="userName"
-            placeholder="Username"
+            formControlName="email"
+            placeholder="Email"
           />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-form-control nzErrorTip="su password!">
         <nz-input-group nzPrefixIcon="lock">
           <input
             type="password"
@@ -33,7 +34,7 @@
     <div nz-row class="login-form-margin">
       <div nz-col [nzSpan]="12">
         <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
+          <span>Recordar</span>
         </label>
       </div>
       <div nz-col [nzSpan]="12">
@@ -47,6 +48,5 @@
     >
       Log in
     </button>
-    Or <a> register now! </a>
   </form>
 </app-page-container>
