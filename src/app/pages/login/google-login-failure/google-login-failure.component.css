@@ -1,0 +1,6 @@
+.map-container {
+  height: calc(100% - 64px) !important;
+  width: calc(100% - 200px);
+  position: absolute;
+  overflow-y: auto;
+}
