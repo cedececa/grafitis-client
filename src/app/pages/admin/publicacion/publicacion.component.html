@@ -43,15 +43,20 @@
         <th>
           <span>Tematica</span>
         </th>
-        <th>
-          <span>Ubicacion</span>
-        </th>
+
         <th>
           <span>Estado</span>
         </th>
         <th>
           <span>Autor</span>
         </th>
+        <th>
+          <span>Latitud</span>
+        </th>
+        <th>
+          <span>Longitud</span>
+        </th>
+
         <th>
           <span>ValoracoinMedia</span>
         </th>
@@ -77,9 +82,7 @@
         <td>
           {{ publicacion.tematica }}
         </td>
-        <td>
-          {{ publicacion.ubicacion }}
-        </td>
+
         <td>
           {{ publicacion.estado }}
         </td>
@@ -87,11 +90,17 @@
           {{ publicacion.autor }}
         </td>
         <td>
+          {{ publicacion.latitud }}
+        </td>
+        <td>
+          {{ publicacion.longitud }}
+        </td>
+        <td>
           {{ publicacion.valoracoinMedia }}
         </td>
         <td>
           <a (click)="showSimpleModificationModal(publicacion)">Modify</a>
-          <br>
+          <br />
           <a (click)="table.remove(publicacion)">Delete</a>
         </td>
       </tr>
