@@ -13,9 +13,23 @@ export class DynamicFormQuestionControlService {
       if (question.controlType == 'array') {
         group[question.key] = this.toFormGroup(question.value);
       } else {
-        group[question.key] = question.required
-          ? new FormControl(question.value || '', Validators.required)
-          : new FormControl(question.value || '');
+        if (question.required) {
+          group[question.key] = new FormControl(
+            {
+              value: question.value || '',
+              disabled: question.disabled ? true : false,
+            },
+            Validators.required
+          );
+        } else {
+          group[question.key] = new FormControl(
+            {
+              value: question.value || '',
+              disabled: question.disabled ? true : false,
+            },
+            Validators.required
+          );
+        }
       }
     });
 

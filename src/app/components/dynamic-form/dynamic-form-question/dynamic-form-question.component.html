@@ -15,6 +15,16 @@
     </div>
 
     <nz-form-control nzErrorTip="{{ question.errorMessage }}">
+      <nz-input-number
+        [(ngModel)]="question.value"
+        [formControlName]="question.key"
+        F
+        *ngSwitchCase="'number'"
+        [id]="question.key"
+        [nzMin]="0"
+        [nzStep]="1"
+      ></nz-input-number>
+
       <input
         *ngSwitchCase="'textbox'"
         [id]="question.key"
@@ -22,7 +32,6 @@
         nz-input
         [(ngModel)]="question.value"
         [formControlName]="question.key"
-        [disabled]="question.disabled"
         [readonly]="question.disabled"
       />
 
