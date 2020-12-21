@@ -20,12 +20,28 @@ export class AppComponent implements OnInit {
   }
   usuarioLogueado: UsuarioEntity = null;
   constructor(private autenticactionService: AuthenticationService) {}
+
   ngOnInit(): void {
-    this.autenticactionService.getUsuarioLogueado().subscribe((usuario) => {
-      this.usuarioLogueado = usuario;
-    });
+    this.getPerfil();
   }
-  salir(){
+  getPerfil() {
+    
+    var intervalTask = setInterval(() => {
+      console.log(this.autenticactionService.isValidAutentication())
+      if (this.autenticactionService.isValidAutentication()) {
+        this.autenticactionService.getUsuarioLogueado().subscribe((usuario) => {
+          this.usuarioLogueado = usuario;
+          console.log(this.usuarioLogueado)
+          this.visibleForUsuarioAutenticated = true;
+          clearInterval(intervalTask);
+        });
+      }
+    }, 1000);
+  }
+  visibleForUsuarioAutenticated = false;
+  salir() {
+    this.visibleForUsuarioAutenticated = false;
     this.autenticactionService.logout().subscribe();
+    this.getPerfil();
   }
 }

@@ -13,10 +13,22 @@
           </li>
         </ul>
       </div>
-      <div nz-col nzFlex="3" class="user-logueado" nz-space nzAlign="center">
+      <div
+        nz-col
+        nzFlex="3"
+        class="user-logueado"
+        nz-space
+        nzAlign="center"
+        *ngIf="visibleForUsuarioAutenticated"
+      >
         <nz-space-item>
-          <h3 style="color:white; padding-right: 8px;" *ngIf="usuarioLogueado">
-            {{ usuarioLogueado.email }}
+          <h3 style="color: white; padding-right: 8px" *ngIf="usuarioLogueado">
+            Role: {{ usuarioLogueado.role }}
+          </h3>
+        </nz-space-item>
+        <nz-space-item>
+          <h3 style="color: white; padding-right: 8px" *ngIf="usuarioLogueado">
+            Email: {{ usuarioLogueado.email }}
           </h3>
         </nz-space-item>
         <nz-space-item>
@@ -28,7 +40,7 @@
           ></nz-avatar>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu nzSelectable>
-              <li nz-menu-item nzDanger (click)='salir()'>Salir</li>
+              <li nz-menu-item nzDanger (click)="salir()">Salir</li>
             </ul>
           </nz-dropdown-menu>
         </nz-space-item>

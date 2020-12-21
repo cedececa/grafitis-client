@@ -29,6 +29,8 @@ import { GrafitisDetailComponent } from './pages/usuario/mapa-grafitis/grafitis-
 import { LoadingSpinModalComponent } from './components/loading-spin-modal/loading-spin-modal.component';
 import { MisGrafitisComponent } from './pages/usuario/mis-grafitis/mis-grafitis.component';
 import { ModifyMyGraffitiComponent } from './pages/usuario/mis-grafitis/modify-my-graffiti/modify-my-graffiti.component';
+import { GoogleLoginFailureComponent } from './pages/login/google-login-failure/google-login-failure.component';
+import { GoogleLoginSuccessComponent } from './pages/login/google-login-success/google-login-success.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ModifyMyGraffitiComponent } from './pages/usuario/mis-grafitis/modify-m
     GrafitisDetailComponent,
     LoadingSpinModalComponent,
     MisGrafitisComponent,
-    ModifyMyGraffitiComponent
+    ModifyMyGraffitiComponent,
+    GoogleLoginFailureComponent,
+    GoogleLoginSuccessComponent
   ],
   imports: [
     HttpClientModule,

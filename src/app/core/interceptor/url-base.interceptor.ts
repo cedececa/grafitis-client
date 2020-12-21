@@ -13,6 +13,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
 import { LoadingSpinModalService } from '../services/loading-spin-modal/loading-spin-modal.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 
 @Injectable()
 export class URLBaseInterceptor implements HttpInterceptor {
@@ -20,7 +21,8 @@ export class URLBaseInterceptor implements HttpInterceptor {
     private nzModalService: NzModalService,
     private router: Router,
     private messageService: NzMessageService,
-    private lodingSpinModalService: LoadingSpinModalService
+    private lodingSpinModalService: LoadingSpinModalService,
+    private authenticationService: AuthenticationService
   ) {}
   errorModal(title, message) {
     this.nzModalService.error({
@@ -96,6 +98,7 @@ export class URLBaseInterceptor implements HttpInterceptor {
             );
             switch (error.status) {
               case 401: //login
+                this.authenticationService.clearToken();
                 this.router.navigate(['/login']);
                 this.errorModal(
                   'No autorizado',
@@ -104,6 +107,7 @@ export class URLBaseInterceptor implements HttpInterceptor {
                 handled = true;
                 break;
               case 403: //forbidden
+                this.authenticationService.clearToken();
                 this.router.navigate(['/login']);
                 this.errorModal(
                   'No autorizado',

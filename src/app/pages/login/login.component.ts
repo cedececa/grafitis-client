@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  urlDespuesDeLoguear='usuario/mapa-grafitis'
+  urlDespuesDeLoguear = 'usuario/mapa-grafitis';
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -41,5 +41,9 @@ export class LoginComponent implements OnInit {
       this.returnUrl,
       this.urlDespuesDeLoguear
     );
+  }
+  autenticateWithGoogle() {
+    //window.open('http://localhost:3000/auth/google/redirect', '_blank');
+    location.href = 'http://localhost:3000/auth/google/redirect';
   }
 }

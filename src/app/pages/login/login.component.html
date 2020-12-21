@@ -1,5 +1,4 @@
 <app-page-container pageWidth="40%">
-  
   <h1 class="logo-font">Grafitis City</h1>
   <form
     nz-form
@@ -49,4 +48,12 @@
       Log in
     </button>
   </form>
+
+  <nz-divider nzText="Autenticar con otro tipo de cuenta"></nz-divider>
+
+  <div nz-row nzJustify="center">
+    <button nz-button nzType="info" nzSize="large" nzShape="round" (click)="autenticateWithGoogle()">
+      <i nz-icon nzType="google"></i>
+    </button>
+  </div>
 </app-page-container>

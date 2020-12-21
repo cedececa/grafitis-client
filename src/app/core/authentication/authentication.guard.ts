@@ -22,37 +22,15 @@ export class AuthenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (
-      localStorage.getItem('auth-token') &&
-      localStorage.getItem('auth-token').length > 10 &&
-      localStorage.getItem('expires-date')
-    ) {
-      const result =
-        parseInt(this.authenticationService.getTokenExpiresDate(), 10) >
-        Date.now();
-      console.log(this.authenticationService.getTokenExpiresDate());
-      console.log(Date.now());
-      console.log(result);
-
-      if (!result) {
-        this.messageService.warning(
-          'Por favor, entrar con su cuenta de nuevo.'
-        );
-
-        this.router.navigate(['/login'], {
-          queryParams: { returnUrl: state.url },
-        });
-        return false;
-      }
-
+    if (this.authenticationService.isValidAutentication()) {
       return true;
+    } else {
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: state.url },
+      });
+      this.messageService.warning('Por favor, entrar con su cuenta de nuevo.');
+
+      return false;
     }
-
-    this.router.navigate(['/login'], {
-      queryParams: { returnUrl: state.url },
-    });
-    this.messageService.warning('Por favor, entrar con su cuenta de nuevo.');
-
-    return false;
   }
 }
