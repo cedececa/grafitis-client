@@ -25,13 +25,12 @@ export class AppComponent implements OnInit {
     this.getPerfil();
   }
   getPerfil() {
-    
     var intervalTask = setInterval(() => {
-      console.log(this.autenticactionService.isValidAutentication())
+      console.log(this.autenticactionService.isValidAutentication());
       if (this.autenticactionService.isValidAutentication()) {
         this.autenticactionService.getUsuarioLogueado().subscribe((usuario) => {
           this.usuarioLogueado = usuario;
-          console.log(this.usuarioLogueado)
+          console.log(this.usuarioLogueado);
           this.visibleForUsuarioAutenticated = true;
           clearInterval(intervalTask);
         });
@@ -43,5 +42,12 @@ export class AppComponent implements OnInit {
     this.visibleForUsuarioAutenticated = false;
     this.autenticactionService.logout().subscribe();
     this.getPerfil();
+  }
+  getURL(url: String) {
+    if (url&&url.includes('google')) {
+      return url;
+    } else {
+      return `http://localhost:3000/${url}`;
+    }
   }
 }
