@@ -10,6 +10,7 @@ import { URLHttpSingleDataResponse } from '../../entities-for-http/url-http-sing
 import { AdminCRUDCommonService } from '../admin-crud-common.service';
 import { QuestionArray } from 'src/app/components/dynamic-form/dynamic-form-question/dynamic-form-question-model/question-json';
 import { PublicacionEntity } from '../../entities/publicacion.entity';
+import { NumberQuestion } from 'src/app/components/dynamic-form/dynamic-form-question/dynamic-form-question-model/question-number';
 
 const uri = 'publicacion';
 @Injectable({
@@ -19,7 +20,6 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
   constructor(http: HttpClient) {
     super(http, PublicacionEntity, uri);
   }
-
 
   getUsuarioById(
     id: string
@@ -34,6 +34,7 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
       new TextboxQuestion({
         key: 'id',
         label: 'ID',
+        disabled: true,
         value: publicacion.id || '',
         required: true,
       }),
@@ -56,19 +57,26 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
         label: 'Estado',
         value: publicacion.estado || '',
         required: false,
-        errorMessage: 'Fill autor.',
+        errorMessage: 'Fill estado.',
       }),
-      new TextboxQuestion({
-        key: 'ubicacion',
-        label: 'Ubicacion',
-        value: publicacion.ubicacion || '',
+      new NumberQuestion({
+        key: 'latitud',
+        label: 'Latitud',
+        value: publicacion.latitud || 0,
         required: false,
-        errorMessage: 'Fill autor.',
+        errorMessage: 'Fill latitud.',
       }),
-      new TextboxQuestion({
+      new NumberQuestion({
+        key: 'longitud',
+        label: 'Longitud',
+        value: publicacion.longitud || 0,
+        required: false,
+        errorMessage: 'Fill longitud.',
+      }),
+      new NumberQuestion({
         key: 'valoracoinMedia',
         label: 'Valoracion media',
-        value: publicacion.valoracoinMedia || '',
+        value: 0,
         required: false,
         errorMessage: 'Fill valoracion media.',
       }),
@@ -77,18 +85,6 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
         label: 'Fecha',
         value: publicacion.fecha,
         required: true,
-      }),
-      new QuestionArray({
-        key: 'usuario',
-        label: 'Usuario',
-        value: [
-          new TextboxQuestion({
-            key: 'id',
-            label: 'ID',
-            value: publicacion.usuario? publicacion.usuario.id : '',
-            required: true,
-          }),
-        ],
       }),
     ];
     return questions;
@@ -114,19 +110,26 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
         label: 'Estado',
         value: '',
         required: false,
-        errorMessage: 'Fill autor.',
+        errorMessage: 'Fill estado.',
       }),
-      new TextboxQuestion({
-        key: 'ubicacion',
-        label: 'Ubicacion',
-        value: '',
+      new NumberQuestion({
+        key: 'latitud',
+        label: 'Latitud',
+        value: 0,
         required: false,
-        errorMessage: 'Fill autor.',
+        errorMessage: 'Fill latitud.',
       }),
-      new TextboxQuestion({
+      new NumberQuestion({
+        key: 'longitud',
+        label: 'Longitud',
+        value: 0,
+        required: false,
+        errorMessage: 'Fill longitud.',
+      }),
+      new NumberQuestion({
         key: 'valoracoinMedia',
         label: 'Valoracion media',
-        value: '',
+        value: 0,
         required: false,
         errorMessage: 'Fill valoracion media.',
       }),
@@ -136,18 +139,6 @@ export class AdminPublicacionService extends AdminCRUDCommonService<PublicacionE
         value: '',
         required: true,
       }),
-/*       new QuestionArray({
-        key: 'usuario',
-        label: 'Usuario',
-        value: [
-          new TextboxQuestion({
-            key: 'id',
-            label: 'ID',
-            value: '',
-            required: false,
-          }),
-        ],
-      }), */
     ];
     return questions;
   }
