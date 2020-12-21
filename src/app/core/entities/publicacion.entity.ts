@@ -7,7 +7,6 @@ import { ValoracionEntity } from './valoracion.entity';
 export class PublicacionEntity extends CommonEntity {
   fecha: Date;
   tematica: string;
-  ubicacion: string;
   estado: string;
   autor: string;
   valoracoinMedia: string;
