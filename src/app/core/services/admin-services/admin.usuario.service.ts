@@ -33,6 +33,7 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
       new TextboxQuestion({
         key: 'id',
         label: 'ID',
+        disabled: true,
         value: usuario.id || '',
         required: true,
       }),
@@ -45,14 +46,14 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
       }),
       new TextboxQuestion({
         key: 'password',
-        label: 'key',
+        label: 'password',
         value: usuario.password || '',
         required: false,
         errorMessage: 'Fill the key.',
       }),
       new TextboxQuestion({
         key: 'email',
-        label: 'key',
+        label: 'email',
         value: usuario.email || '',
         required: false,
         errorMessage: 'Fill the key.',
@@ -64,34 +65,35 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
           new TextboxQuestion({
             key: 'id',
             label: 'ID',
-            value: usuario.perfil.id || '',
+            disabled: true,
+            value: usuario.perfil ? usuario.perfil.id : '',
             required: true,
           }),
           new TextboxQuestion({
             key: 'nombre',
             label: 'Nombre',
-            value: usuario.perfil.nombre || '',
+            value: usuario.perfil ? usuario.perfil.nombre : '',
             required: false,
             errorMessage: 'Fill the key.',
           }),
           new TextboxQuestion({
             key: 'apellido',
             label: 'Apellido',
-            value: usuario.perfil.apellido || '',
+            value: usuario.perfil ? usuario.perfil.apellido : '',
             required: false,
             errorMessage: 'Fill the name.',
           }),
           new TextboxQuestion({
             key: 'apellidoSegundo',
             label: 'Apellido Segundo',
-            value: usuario.perfil.apellidoSegundo || '',
+            value: usuario.perfil ? usuario.perfil.apellidoSegundo : '',
             required: false,
             errorMessage: 'Fill the name.',
           }),
           new DatePickerQuestion({
             key: 'fechaNacimiento',
             label: 'Fecha de Nacimiento',
-            value: usuario.perfil.fechaNacimiento,
+            value: usuario.perfil ? usuario.perfil.fechaNacimiento : '',
             required: true,
           }),
         ],
@@ -102,11 +104,51 @@ export class AdminUsuarioService extends AdminCRUDCommonService<UsuarioEntity> {
   getQuestionsForNew() {
     let questions: QuestionBase<any>[] = [
       new TextboxQuestion({
-        key: 'perfil.nombre',
-        label: 'Name',
+        key: 'password',
+        label: 'password',
         value: '',
-        required: true,
-        errorMessage: 'Fill the name.',
+        required: false,
+        errorMessage: 'Fill the key.',
+      }),
+      new TextboxQuestion({
+        key: 'email',
+        label: 'email',
+        value: '',
+        required: false,
+        errorMessage: 'Fill the key.',
+      }),
+      new QuestionArray({
+        key: 'perfil',
+        label: 'Perfil',
+        value: [
+          new TextboxQuestion({
+            key: 'nombre',
+            label: 'Nombre',
+            value: '',
+            required: false,
+            errorMessage: 'Fill the key.',
+          }),
+          new TextboxQuestion({
+            key: 'apellido',
+            label: 'Apellido',
+            value: '',
+            required: false,
+            errorMessage: 'Fill the name.',
+          }),
+          new TextboxQuestion({
+            key: 'apellidoSegundo',
+            label: 'Apellido Segundo',
+            value: '',
+            required: false,
+            errorMessage: 'Fill the name.',
+          }),
+          new DatePickerQuestion({
+            key: 'fechaNacimiento',
+            label: 'Fecha de Nacimiento',
+            value: '',
+            required: true,
+          }),
+        ],
       }),
     ];
     return questions;
