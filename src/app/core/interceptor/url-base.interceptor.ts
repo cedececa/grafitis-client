@@ -28,7 +28,7 @@ export class URLBaseInterceptor implements HttpInterceptor {
     this.nzModalService.error({
       nzTitle: title,
       nzContent: message,
-      nzOkText: '确认',
+      nzOkText: 'Confirmar',
     });
   }
   intercept1(
