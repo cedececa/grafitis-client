@@ -122,7 +122,7 @@ export class MapaGrafitisComponent implements OnInit {
   openGrafitiDetailModal(marker: any) {
     console.log(marker.publicacion);
     this.nzModalService.create({
-      nzTitle: 'Grafitis Detail',
+      nzTitle: 'Detalles de Grafiti',
       nzContent: GrafitisDetailComponent,
       nzComponentParams: {
         publicacion: marker.publicacion,
