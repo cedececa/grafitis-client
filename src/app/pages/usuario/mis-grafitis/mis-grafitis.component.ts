@@ -35,7 +35,7 @@ export class MisGrafitisComponent implements OnInit {
 
   openModifyGrafitisModal(toBeModified: PublicacionEntity) {
     this.nzModalService.create({
-      nzTitle: 'Modify Grafitis',
+      nzTitle: 'Modificar Grafitis',
       nzContent: ModifyMyGraffitiComponent,
       nzComponentParams: {
         toBeModified: toBeModified,
@@ -49,7 +49,7 @@ export class MisGrafitisComponent implements OnInit {
       nzTitle: 'Confirmacion!',
       nzContent: `Estas seguro/a que desea eliminar? ${entity.id}?`,
       nzOkText: 'OK',
-      nzCancelText: 'Cancel',
+      nzCancelText: 'Cancelar',
       nzOnOk: () => {
         this.usuarioPublicacionService.deleteMyGraffiti(entity).subscribe(()=>{
           this.refresh()

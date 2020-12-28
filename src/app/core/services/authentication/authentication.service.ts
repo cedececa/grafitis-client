@@ -67,7 +67,7 @@ export class AuthenticationService {
   ) {
     if (sdr.code == 200 && sdr.data) {
       this.setToken(sdr.data.accessToken);
-      this.nzMessageService.success('Logueado con exito.');
+      this.nzMessageService.success('Logueado con éxito.');
       //When true, navigates while replacing the current state in history.
       //https://stackoverflow.com/questions/51427689/angular-5-remove-route-history
       //console.log(returnUrl.length);
@@ -105,7 +105,7 @@ export class AuthenticationService {
       (sdr: URLHttpSingleDataResponse<any>) => {
         this.lodingSpinModalService.close();
         if (sdr.data) {
-          this.nzMessageService.success('Registrado con exito');
+          this.nzMessageService.success('Registrado con éxito');
           this.router.navigate(['/login']);
         } else {
           this.nzMessageService.error(sdr.message);
@@ -135,7 +135,7 @@ export class AuthenticationService {
           this.nzMessageService.error(sdr.message);
         }
 
-        this.nzMessageService.success('Salir con exito');
+        this.nzMessageService.success('Salir con éxito');
         this.router.navigate(['/login']);
 
         localStorage.removeItem(TOKEN_KEY);

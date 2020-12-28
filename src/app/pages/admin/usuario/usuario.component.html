@@ -2,11 +2,11 @@
   <h1 class="global-text-center global-padding-16">Usuario</h1>
   <nz-badge>
     <button nz-button nzType="primary" (click)="table.refresh()">
-      Refresh
+      Actualizar
     </button>
   </nz-badge>
   <button nz-button nzType="primary" (click)="table.updateFilter('', null)">
-    Reset Filters
+    Eliminar Filtros
   </button>
   <button nz-button (click)="showSimpleCreateModal()" class="green-button">
     Create New
@@ -29,10 +29,10 @@
     <thead (nzSortChange)="table.sort($event)" nzSingleSort>
       <tr>
         <th nzShowSort nzSortKey="createdAt">
-          <span>Created At</span>
+          <span>Creado</span>
         </th>
         <th nzShowSort nzSortKey="updatedAt">
-          <span>Modified At</span>
+          <span>Modificado</span>
         </th>
 
         <th>
@@ -42,7 +42,7 @@
           <span>Email</span>
         </th>
         <th>
-          <span>Password</span>
+          <span>Contraseña</span>
         </th>
         <th>
           <span>Nombre</span>
@@ -71,9 +71,9 @@
           {{ usuario.perfil ? usuario.perfil.nombre : "" }}
         </td>
         <td>
-          <a (click)="showSimpleModificationModal(usuario)">Modify</a>
+          <a (click)="showSimpleModificationModal(usuario)">Modificar</a>
           <br />
-          <a (click)="table.remove(usuario)">Delete</a>
+          <a (click)="table.remove(usuario)">Eliminar</a>
         </td>
       </tr>
     </tbody>

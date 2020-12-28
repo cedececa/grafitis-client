@@ -62,9 +62,9 @@ export class TableBase<
   public remove(entity: Entity) { 
     this.nzModalService.confirm({
       nzTitle: "Confirmation!",
-      nzContent: `Are you sure to delete this entity with id ${entity.id}?`,
+      nzContent: `¿Estás seguro que quieres borrar este entidad con id ${entity.id}?`,
       nzOkText: "OK",
-      nzCancelText: "Cancel",
+      nzCancelText: "Cancelar",
       nzOnOk: () => {
         this.entityService.remove(entity.id).subscribe(sdr => {
           if (sdr.code == 200) {
@@ -86,7 +86,7 @@ export class TableBase<
       },
       nzOnCancel: () => {
         this.nzMessageService.info(
-          "Cancel button is clicked. Nothing will be changed!"
+          "Cancelar. Nada ha cambiado!"
         );
       }
     });

@@ -25,7 +25,7 @@ export class UsuarioPublicacionService {
       .pipe(
         map((sdr) => {
           if (sdr.code == 200) {
-            this.messageService.success(`Creacion: ha tenido exito.`);
+            this.messageService.success(`Creacion: ha tenido éxito.`);
           } else {
             this.messageService.error(
               `Error al crear, ${sdr.code}: ${sdr.message}`
@@ -46,7 +46,7 @@ export class UsuarioPublicacionService {
         map((sdr) => {
           if (sdr.code == 200) {
             if (sdr.code == 200) {
-              this.messageService.success(`Modificacion: ha tenido exito.`);
+              this.messageService.success(`Modificacion: ha tenido éxito.`);
             } else {
               this.messageService.error(
                 `Error al modificar, ${sdr.code}: ${sdr.message}`
@@ -81,7 +81,7 @@ export class UsuarioPublicacionService {
       .pipe(
         map((sdr) => {
           if (sdr.code == 200) {
-            this.messageService.success(`Eliminacion: ha tenido exito.`);
+            this.messageService.success(`Eliminacion: ha tenido éxito.`);
           } else {
             this.messageService.error(
               `Error al eliminar, ${sdr.code}: ${sdr.message}`
