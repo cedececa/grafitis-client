@@ -1,4 +1,4 @@
-# grafitis-backend
+# grafitis-client
 
 
 ## Project setup
