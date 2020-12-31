@@ -7,7 +7,7 @@ import { URLHttpSingleDataResponse } from '../../entities-for-http/url-http-sing
 import { ComentarioEntity } from '../../entities/comentario.entity';
 import { PublicacionEntity } from '../../entities/publicacion.entity';
 
-const uri = 'publicacion';
+const uri = 'publicacion'; 
 @Injectable({
   providedIn: 'root',
 })

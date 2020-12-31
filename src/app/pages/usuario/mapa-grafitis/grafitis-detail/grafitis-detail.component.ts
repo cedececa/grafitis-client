@@ -6,6 +6,7 @@ import { UsuarioPublicacionService } from 'src/app/core/services/usuario-service
 import { MapaGrafitisService } from '../mapa-grafitis.service';
 import { mergeMap, map, take } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
+import { AuthenticationService } from 'src/app/core/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-grafitis-detail',
@@ -16,7 +17,8 @@ export class GrafitisDetailComponent implements OnInit {
   @Input() publicacion: PublicacionEntity;
   constructor(
     private mapaGrafitisService: MapaGrafitisService,
-    private usuarioPublicacionService: UsuarioPublicacionService
+    private usuarioPublicacionService: UsuarioPublicacionService,
+    private autenticactionService: AuthenticationService
   ) {}
 
   private _comentarios: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -42,32 +44,27 @@ export class GrafitisDetailComponent implements OnInit {
     let newComentario = {
       contenido: this.inputValue,
     };
+    this.autenticactionService.usuarioLogueado$.subscribe((usuario) => {
+      console.log(usuario)
+      this.usuarioPublicacionService
+        .comment(
+          usuario.id,
+          this.publicacion.id,
+          newComentario as ComentarioEntity
+        )
+        .subscribe((newComentario) => {
+          this.comentarios$.pipe(take(1)).subscribe((val) => {
+            //console.log(val);
+            const newArr = [newComentario, ...val];
+            this._comentarios.next(newArr);
 
-    this.usuarioPublicacionService
-      .comment(27,this.publicacion.id, newComentario as ComentarioEntity)
-      .subscribe((newComentario) => {
-        this.comentarios$.pipe(take(1)).subscribe((val) => {
-          console.log(val);
-          const newArr = [newComentario,...val];
-          this._comentarios.next(newArr);
-
-          var myDiv = document.getElementById('div-comentarios');
-          myDiv.scrollTop = 0;
-          this.inputValue=''
+            var myDiv = document.getElementById('div-comentarios');
+            myDiv.scrollTop = 0;
+            this.inputValue = '';
+          });
         });
-      });
+    });
 
-    /*     this.submitting = true;
-    const content = this.inputValue;
-    this.inputValue = '';
-    setTimeout(() => {
-      this.submitting = false;
-      this.comentarios$ = this.comentarios$.pipe(
-        map((data) => {
-          data.unshift(this.inputValue);
-          return data;
-        })
-      );
-    }, 800); */
+
   }
 }

@@ -18,30 +18,17 @@ export class AppComponent implements OnInit {
       outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
     );
   }
-  usuarioLogueado: UsuarioEntity = null;
+  autenticado$ = this.autenticactionService.autenticado$;
+
+  usuarioLogueado$ = this.autenticactionService.usuarioLogueado$;
   constructor(private autenticactionService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.getPerfil();
+
   }
-  getPerfil() {
-    var intervalTask = setInterval(() => {
-      console.log(this.autenticactionService.isValidAutentication());
-      if (this.autenticactionService.isValidAutentication()) {
-        this.autenticactionService.getUsuarioLogueado().subscribe((usuario) => {
-          this.usuarioLogueado = usuario;
-          console.log(this.usuarioLogueado);
-          this.visibleForUsuarioAutenticated = true;
-          clearInterval(intervalTask);
-        });
-      }
-    }, 1000);
-  }
-  visibleForUsuarioAutenticated = false;
+  
   salir() {
-    this.visibleForUsuarioAutenticated = false;
     this.autenticactionService.logout().subscribe();
-    this.getPerfil();
   }
   getURL(url: String) {
     if (url&&url.includes('google')) {

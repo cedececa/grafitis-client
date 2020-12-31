@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -16,15 +16,22 @@ const EXPIRES_DATE = 'expires-date';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  authenticationState = new BehaviorSubject(false);
-
+  private _autenticado$ = new BehaviorSubject(false);
+  readonly autenticado$ = this._autenticado$.asObservable();
+  private _usuarioLogueado$ = new BehaviorSubject<UsuarioEntity>(undefined);
+  readonly usuarioLogueado$ = this._usuarioLogueado$.asObservable();
   constructor(
     private http: HttpClient,
     private router: Router,
     private lodingSpinModalService: LoadingSpinModalService,
     private nzMessageService: NzMessageService
   ) {}
-
+  initForUsuarioLogueado() {
+    this.getUsuarioLogueado().subscribe((usuario) => {
+      this._usuarioLogueado$.next(usuario);
+      this._autenticado$.next(true);
+    });
+  }
   getTokenExpiresDate() {
     return localStorage.getItem(EXPIRES_DATE);
   }
@@ -51,7 +58,10 @@ export class AuthenticationService {
       .subscribe(
         (sdr: URLHttpSingleDataResponse<any>) => {
           //console.log(sdr);
+          this.setToken(sdr.data.accessToken);
+
           this.lodingSpinModalService.close();
+
           this.routeLogic(sdr, returnUrl, customNextUrl);
         },
         (error) => {
@@ -66,7 +76,6 @@ export class AuthenticationService {
     customNextUrl: string
   ) {
     if (sdr.code == 200 && sdr.data) {
-      this.setToken(sdr.data.accessToken);
       this.nzMessageService.success('Logueado con éxito.');
       //When true, navigates while replacing the current state in history.
       //https://stackoverflow.com/questions/51427689/angular-5-remove-route-history
@@ -93,10 +102,16 @@ export class AuthenticationService {
     //this is for test const expiresDate = (Date.now() + 5 * 1000).toString();
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(EXPIRES_DATE, expiresDate);
+    this.getUsuarioLogueado().subscribe((usuario) => {
+      this._usuarioLogueado$.next(usuario);
+      this._autenticado$.next(true);
+    });
   }
   clearToken() {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(EXPIRES_DATE);
+    this._usuarioLogueado$.next(undefined);
+    this._autenticado$.next(false);
   }
 
   register(user: UsuarioEntity) {
@@ -134,11 +149,13 @@ export class AuthenticationService {
         if (sdr.code != 200) {
           this.nzMessageService.error(sdr.message);
         }
+        this._usuarioLogueado$.next(undefined);
+        this._autenticado$.next(false);
+
+        localStorage.removeItem(TOKEN_KEY);
 
         this.nzMessageService.success('Salir con éxito');
         this.router.navigate(['/login']);
-
-        localStorage.removeItem(TOKEN_KEY);
 
         return sdr.data;
       })

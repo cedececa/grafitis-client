@@ -31,6 +31,7 @@ import { MisGrafitisComponent } from './pages/usuario/mis-grafitis/mis-grafitis.
 import { ModifyMyGraffitiComponent } from './pages/usuario/mis-grafitis/modify-my-graffiti/modify-my-graffiti.component';
 import { GoogleLoginFailureComponent } from './pages/login/google-login-failure/google-login-failure.component';
 import { GoogleLoginSuccessComponent } from './pages/login/google-login-success/google-login-success.component';
+import { AuthenticationService } from './core/services/authentication/authentication.service';
 
 @NgModule({
   declarations: [
@@ -78,4 +79,12 @@ import { GoogleLoginSuccessComponent } from './pages/login/google-login-success/
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private autenticactionService: AuthenticationService) {
+    if(this.autenticactionService.isValidAutentication()){
+      this.autenticactionService.initForUsuarioLogueado();
+      
+    }
+  }
+
+}

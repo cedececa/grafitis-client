@@ -19,22 +19,22 @@
         class="user-logueado"
         nz-space
         nzAlign="center"
-        *ngIf="visibleForUsuarioAutenticated"
+        *ngIf='autenticado$|async'
       >
         <nz-space-item>
-          <h3 style="color: white; padding-right: 8px" *ngIf="usuarioLogueado">
-            Rol: {{ usuarioLogueado.role }}
+          <h3 style="color: white; padding-right: 8px" >
+            Rol: {{ (usuarioLogueado$|async) .role }}
           </h3>
         </nz-space-item>
         <nz-space-item>
-          <h3 style="color: white; padding-right: 8px" *ngIf="usuarioLogueado">
-            Email: {{ usuarioLogueado.email }}
+          <h3 style="color: white; padding-right: 8px" >
+            Email: {{ (usuarioLogueado$|async) .email }}
           </h3>
         </nz-space-item>
         <nz-space-item>
           <nz-avatar
             [nzSize]="45"
-            [nzSrc]="getURL(usuarioLogueado.perfil.avatarUrl)"
+            [nzSrc]="getURL((usuarioLogueado$|async) .perfil.avatarUrl)"
             nzIcon="user"
             nz-dropdown
             [nzDropdownMenu]="menu"
