@@ -18,15 +18,15 @@ export class AppComponent implements OnInit {
       outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
     );
   }
-  autenticado$ = this.autenticactionService.autenticado$;
-
-  usuarioLogueado$ = this.autenticactionService.usuarioLogueado$;
+  
   constructor(private autenticactionService: AuthenticationService) {}
 
   ngOnInit(): void {
 
   }
-  
+  autenticado$ = this.autenticactionService.autenticado$;
+
+  usuarioLogueado$ = this.autenticactionService.usuarioLogueado$;
   salir() {
     this.autenticactionService.logout().subscribe();
   }
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     if (url&&url.includes('google')) {
       return url;
     } else {
-      return `http://localhost:3000/${url}`;
+      return `http://15.237.37.37:3000/${url}`;
     }
   }
 }

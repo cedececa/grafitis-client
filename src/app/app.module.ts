@@ -83,7 +83,7 @@ export class AppModule {
   constructor(private autenticactionService: AuthenticationService) {
     if(this.autenticactionService.isValidAutentication()){
       this.autenticactionService.initForUsuarioLogueado();
-      
+    
     }
   }
 

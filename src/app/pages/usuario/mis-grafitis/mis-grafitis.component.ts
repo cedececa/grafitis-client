@@ -23,7 +23,7 @@ export class MisGrafitisComponent implements OnInit {
     private nzModalService: NzModalService,
     private nzMessageService: NzMessageService
   ) {}
-  preImageUrlForLoad = 'http://localhost:3000';
+  preImageUrlForLoad = 'http://15.237.37.37:3000';
 
   ngOnInit(): void {}
   previewVisible = false;

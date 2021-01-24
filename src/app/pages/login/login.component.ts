@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     );
   }
   autenticateWithGoogle() {
-    //window.open('http://localhost:3000/auth/google/redirect', '_blank');
-    location.href = 'http://localhost:3000/auth/google/redirect';
+    //window.open('http://15.237.37.37:3000/auth/google/redirect', '_blank');
+    location.href = 'http://15.237.37.37:3000/auth/google/redirect';
   }
 }

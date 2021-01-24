@@ -19,15 +19,16 @@ export abstract class AdminCRUDCommonService<
   actualEntityId: string = null;
   actualEntity: Entity = null;
 
-  private _entities = new BehaviorSubject<Entity[]>([]);
   private entitiesStore: { entities: Entity[] } = { entities: [] };
+  private _entities = new BehaviorSubject<Entity[]>([]);
+  readonly entities = this._entities.asObservable();
+
 
   private _loading = new BehaviorSubject<Boolean>(true);
   private _totalItemsInDB = new BehaviorSubject<Number>(0);
 
   readonly totalItemsInDB = this._totalItemsInDB.asObservable();
   readonly loading = this._loading.asObservable();
-  readonly entities = this._entities.asObservable();
 
   loadEntitiesBy(
     page: number = 0,
