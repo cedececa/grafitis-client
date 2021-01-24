@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
   }
   autenticateWithGoogle() {
     //window.open('http://15.237.37.37:3000/auth/google/redirect', '_blank');
-    location.href = 'http://15.237.37.37:3000/auth/google/redirect';
+    location.href = 'http://practica4.platorico.com:3000/auth/google/redirect';
   }
 }
